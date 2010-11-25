@@ -1,0 +1,22 @@
+<h1><head>Users List</head></h1>
+<% if @users.size > 0 %>
+	<table border="1">
+		<tr><th>Name</th></tr>
+		<% for user in @users %>
+			<tr>
+				<td><%= user.name %></td>
+				<td><%= link_to "Edit", :controller=>"users", :action=>"edit", :id=>user.id %></td>
+				<td><%= link_to "Delete", {:controller=>"users", :action=>"delete", :id=>user.id}, :confirm=>"r u sure to delete" %></td>
+				
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No users
+<% end %>
+
+<hr />
+
+<%= link_to "New user", :controller=>"users", :action=>"new" %>
+|
+<%= link_to "Messages", :controller=>"messages", :action=>"list" %>

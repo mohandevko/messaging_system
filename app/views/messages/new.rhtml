@@ -1,0 +1,13 @@
+<% form_tag :controller=>"messages", :action=>"create" do %>
+	<%= error_messages_for :message %>
+	
+	Subject: <%= text_field :message, :subject %> <br />
+	Body: <%= text_area :message, :body %> <br />
+	Sender: <%= collection_select :message, :sender_id, @users, :id, :name %> <br />
+	Recipient: <%= collection_select :message, :recipient_id, @users, :id, :name %> <br />
+	<%= hidden_field :message, :reply_to, :value=>params[:reply_id] %> <br />
+	
+	
+	<%= submit_tag "Save"%>
+	<%= link_to "Cancel", :controller=>"messages", :action=>"list" %>
+<% end %>

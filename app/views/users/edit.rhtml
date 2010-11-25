@@ -1,0 +1,7 @@
+<% form_tag :controller=>"users", :action=>"update", :id=>@user.id do %>
+	<%= error_messages_for :user %>
+	Name: <%= text_field :user, :name %>
+	
+	<%= submit_tag "Update" %>
+	<%= link_to "Cancel", :controller=>"users", :action=>"list" %>
+<% end %>

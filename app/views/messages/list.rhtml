@@ -1,0 +1,24 @@
+<h1><head>Messages List</head></h1>
+<% if @messages.size > 0 %>
+	<table border="1">
+		<tr>
+			<th>Subject</th><th>Replied to</th><th>Sender</th><th>Reciever</th>
+		</tr>
+		
+		<% for message in @messages %>
+			<tr>
+				<td><%= message.subject %></td><td><%= (Message.find_by_id(message.reply_to)).subject rescue "-" %></td><td><%= message.sender.name rescue "-" %></td><td><%= message.recipient.name rescue "-" %></td>
+				<td><%= link_to "delete", {:controller=>"messages", :action=>"delete", :id=>message.id}, :confirm=>"r u sure to delete" %></td>
+				<td><%= link_to "Reply", {:controller=>"messages", :action=>"new", :reply_id=>message.id} %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No messages
+<% end %>
+
+<hr />
+
+<%= link_to "New message", :controller=>"messages", :action=>"new" %>
+|
+<%= link_to "users", :controller=>"users", :action=>"list" %>
